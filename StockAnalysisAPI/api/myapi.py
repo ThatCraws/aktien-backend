@@ -1,0 +1,11 @@
+from flask import Blueprint
+from flask_restx import Api
+from api.stock.endpoints.stocks import namespace as stocksnamespace
+
+blueprint = Blueprint('api', __name__, url_prefix='/api')
+api = Api(blueprint, version='0.1', title='My Demo API', description='Test')
+api.add_namespace(stocksnamespace)
+
+@api.errorhandler
+def std_handler(exception):
+    return {'message': 'An unexpected error has occured. Please contact the support.'}, 500

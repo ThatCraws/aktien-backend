@@ -1,0 +1,87 @@
+{
+	"info": {
+		"_postman_id": "b8a368ef-e641-47c5-807a-f900a0704c32",
+		"name": "StockAnalysisAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all stocks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}api/stocks",
+					"host": [
+						"{{base_url}}api"
+					],
+					"path": [
+						"stocks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get stcoks with filter",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}api/stocks?name=BASF SE&index=1&country=DE&sector=1",
+					"host": [
+						"{{base_url}}api"
+					],
+					"path": [
+						"stocks"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "BASF SE"
+						},
+						{
+							"key": "index",
+							"value": "1"
+						},
+						{
+							"key": "country",
+							"value": "DE"
+						},
+						{
+							"key": "sector",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:5000/"
+		}
+	]
+}
