@@ -21,6 +21,7 @@ def init_app(app):
     configure_app(app)
     pymysql.install_as_MySQLdb()
     app.register_blueprint(stock_api)
+    print("he")
     db.init_app(app)
 
 def main():
