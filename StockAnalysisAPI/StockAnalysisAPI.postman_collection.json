@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b8a368ef-e641-47c5-807a-f900a0704c32",
+		"_postman_id": "e7bfa58d-81f4-4369-b82f-18ff685143ae",
 		"name": "StockAnalysisAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -23,7 +23,7 @@
 			"response": []
 		},
 		{
-			"name": "Get stcoks with filter",
+			"name": "Get stocks with filter",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -52,6 +52,24 @@
 							"key": "sector",
 							"value": "1"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get filters",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}api/filters/",
+					"host": [
+						"{{base_url}}api"
+					],
+					"path": [
+						"filters",
+						""
 					]
 				}
 			},

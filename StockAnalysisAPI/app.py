@@ -27,5 +27,5 @@ def main():
     init_app(app)
     app.run(debug=settings.FLASK_DEBUG, threaded=settings.FLASK_THREADED)
 
-if __name__ == 'app':
+if __name__ == '__main__':
     main()

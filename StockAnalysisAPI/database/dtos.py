@@ -15,6 +15,8 @@ stock_index_table = db.Table('stock_index',
     db.Column('index_id', db.Integer, db.ForeignKey('index.index_id'), primary_key=True)
 )
 
+filter_data = ''
+
 class Stock(db.Model):
     __tablename__ = 'stock'
 
@@ -108,3 +110,4 @@ class Index(db.Model):
             'name': self.name,
             'country': self.country,
         }
+
