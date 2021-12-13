@@ -12,7 +12,7 @@ namespace = Namespace('filters', description='')
 filter_data = ''
 
 @namespace.route('/')
-class Stocks(Resource):
+class Filters(Resource):
 
     # @api.expect(pagination)
     # @api.marshal_with(page_with_stocks)

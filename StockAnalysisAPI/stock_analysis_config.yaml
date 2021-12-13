@@ -1,0 +1,37 @@
+configs:
+    - config:
+        profile: "develop"
+        port: 5000
+        debugMode: true
+        logPath: "logs/stock_analysis.log"
+        flaskThreaded: false
+        sqlalchemyTrackModifications: false
+        jsonSortKeys: false
+        databases:
+            stock_analysis:
+                address: "127.0.0.1"
+                port: 3306
+                user: "root"
+                password: ""
+                database: "stock_analysis"
+        logger:
+            level: "debug"
+            logFilePath: "logs/stock_analysis.log"
+    - config:
+        profile: "production"
+        port: 5000
+        debugMode: false
+        logPath: "logs/stock_analysis.log"
+        flaskThreaded: false
+        sqlalchemyTrackModifications: false
+        jsonSortKeys: false
+        databases:
+            stock_analysis:
+                address: "127.0.0.1"
+                port: 3306
+                user: "root"
+                password: ""
+                database: "stock_analysis"
+        logger:
+            level: "warning"
+            logFilePath: "logs/stock_analysis.log"
