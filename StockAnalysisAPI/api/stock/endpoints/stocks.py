@@ -9,7 +9,7 @@ from database.dtos import Exchange, Index, Sector, Stock
 namespace = Namespace('stocks', description='')
 
 @namespace.route('/')
-class Stocks(Resource):
+class StocksEndpoint(Resource):
 
     # @api.expect(pagination)
     # @api.marshal_with(page_with_stocks)

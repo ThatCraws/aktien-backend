@@ -59,6 +59,43 @@
 		},
 		{
 			"name": "Get filters",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Is valid\",function(){\r",
+							"\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response must be valid and have a body\", function () {\r",
+							"     pm.response.to.be.ok;\r",
+							"     pm.response.to.be.withBody;\r",
+							"     pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Includes all needed categories\",function(){\r",
+							"\r",
+							"    pm.expect(jsonData[0].name).to.eql(\"sector\");\r",
+							"    pm.expect(jsonData[1].name).to.eql(\"exchange\");\r",
+							"    pm.expect(jsonData[2].name).to.eql(\"index\");\r",
+							"    pm.expect(jsonData.length).to.equal(3);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Includes minimal number of operations\",function(){\r",
+							"    pm.expect(jsonData[0].options).to.not.empty;\r",
+							"    pm.expect(jsonData[1].options).to.not.empty;\r",
+							"    pm.expect(jsonData[2].options).to.not.empty;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -70,6 +107,29 @@
 					"path": [
 						"filters",
 						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get specific stock",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}api/stock?id=2",
+					"host": [
+						"{{base_url}}api"
+					],
+					"path": [
+						"stock"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2"
+						}
 					]
 				}
 			},

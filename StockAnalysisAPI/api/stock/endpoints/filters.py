@@ -5,6 +5,7 @@ from flask_restx import Resource
 # from api.stock.api_definition import page_with_stocks, stock
 from api.stock.parser import pagination_parser as pagination
 from database.dtos import Exchange, Index, Sector
+import logging
 
 namespace = Namespace('filters', description='')
 
@@ -12,7 +13,7 @@ namespace = Namespace('filters', description='')
 filter_data = ''
 
 @namespace.route('/')
-class Filters(Resource):
+class FiltersEndpoint(Resource):
 
     # @api.expect(pagination)
     # @api.marshal_with(page_with_stocks)
@@ -55,7 +56,6 @@ class Filters(Resource):
             for index in indices:
                 index_options.append({'value':index.index_id,'name':index.name})
             filter_data[2]['options'] = index_options
-
         return jsonify(filter_data)
 
 

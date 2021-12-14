@@ -47,6 +47,7 @@ def init_app(app):
     profile = getProfileFromArguments()
     config = loadConfiguration(profile)
     if config == None:
+        logging.critical('no config found')
         exit()
 
     settings.set_settings(config)
@@ -63,6 +64,7 @@ def init_app(app):
 
 def main():
     init_app(app)
+    logging.info('backend starting...')
     app.run(debug=settings.flask_debug, threaded=settings.flask_threaded)
 
 if __name__ == '__main__':
