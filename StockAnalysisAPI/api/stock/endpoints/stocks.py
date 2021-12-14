@@ -1,4 +1,5 @@
 from flask import request, jsonify
+from flask_cors import cross_origin
 from flask_restx.namespace import Namespace
 # from api.myapi import api
 from flask_restx import Resource
@@ -13,6 +14,7 @@ class StocksEndpoint(Resource):
 
     # @api.expect(pagination)
     # @api.marshal_with(page_with_stocks)
+    @cross_origin()
     def get(self):
         # args = pagination.parse_args(request)
         # page = args.get('page', 1)

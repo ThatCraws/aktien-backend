@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 import settings, pymysql, sys, os, logging
 from api.myapi import blueprint as stock_api
 from database.db import db
@@ -10,6 +11,7 @@ DEFAULT_PROFILE = "develop"
 CONFIGURATION_FILE_PATH = "stock_analysis_config.yaml"
 
 app = Flask(__name__)
+cors = CORS(app)
 app.wsgi_app = ProxyFix(app.wsgi_app)
 
 def readCommandLineArguments(paramKey):
@@ -39,6 +41,7 @@ def loadConfiguration(profile):
     return config
 
 def configure_app(app):
+    app.config['CORS_HEADERS'] = 'Access-Control-Allow-Origin'
     app.config['SQLALCHEMY_DATABASE_URI'] = settings.sqlalchemy_database_uri
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = settings.sqlalchemy_track_modifications
     app.config['JSON_SORT_KEYS'] = settings.json_sort_keys
