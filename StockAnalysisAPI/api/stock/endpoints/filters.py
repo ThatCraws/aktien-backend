@@ -42,7 +42,7 @@ class FiltersEndpoint(Resource):
             ]
 
             #fill the options-lists
-            sectors = Sector.query.all()
+            sectors = Sector.query.order_by(Sector.name.asc()).all()
             sector_options = []
             for sector in sectors:
                 if sector.language == 'deu':
@@ -61,7 +61,7 @@ class FiltersEndpoint(Resource):
                 index_options.append({'value':index.index_id,'name':index.name})
             filter_data[2]['options'] = index_options
 
-            countries = Country.query.all()
+            countries = Country.query.order_by(Country.name.asc()).all()
             country_options = []
             for country in countries:
                 if country.language == 'deu':
