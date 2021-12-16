@@ -28,17 +28,17 @@ class FiltersEndpoint(Resource):
             'options': []
             },
             {
-            'name': 'exchange',
-            'options': []
-            },
-            {
             'name': 'index',
             'options': []
             },
             {
             'name': 'country',
             'options': []
-            }
+            },
+            # {
+            # 'name': 'exchange',
+            # 'options': []
+            # },
             ]
 
             #fill the options-lists
@@ -49,24 +49,24 @@ class FiltersEndpoint(Resource):
                     sector_options.append({'value':sector.sector_id,'name':sector.name})
             filter_data[0]['options'] = sector_options
 
-            exchanges = Exchange.query.all()
-            exchange_options = []
-            for exchange in exchanges:
-                exchange_options.append({'value':exchange.exchange_id,'name':exchange.name})
-            filter_data[1]['options'] = exchange_options
-
             indices = Index.query.all()
             index_options = []
             for index in indices:
                 index_options.append({'value':index.index_id,'name':index.name})
-            filter_data[2]['options'] = index_options
+            filter_data[1]['options'] = index_options
 
             countries = Country.query.order_by(Country.name.asc()).all()
             country_options = []
             for country in countries:
                 if country.language == 'deu':
                     country_options.append({'value':country.country_id,'name':country.name})
-            filter_data[3]['options'] = country_options
+            filter_data[2]['options'] = country_options
+
+            # exchanges = Exchange.query.all()
+            # exchange_options = []
+            # for exchange in exchanges:
+            #     exchange_options.append({'value':exchange.exchange_id,'name':exchange.name})
+            # filter_data[3]['options'] = exchange_options
         return jsonify(filter_data)
 
 
