@@ -110,3 +110,21 @@ class Index(db.Model):
             'country': self.country,
         }
 
+class Country(db.Model):
+    __tablename__ = 'country'
+
+    country_id = db.Column(db.String(20), primary_key=True)
+    language = db.Column(db.String(20), primary_key=True)
+    name = db.Column(db.String(255))
+
+    def __init__(self, country_id, language, name):
+        self.country_id = country_id
+        self.language = language
+        self.name = name
+
+    def serialize(self):
+        return {
+            'country_id': self.country_id,
+            'language': self.language,
+            'name': self.name,
+        }

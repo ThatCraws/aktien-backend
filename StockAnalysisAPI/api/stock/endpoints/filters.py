@@ -4,7 +4,7 @@ from flask_restx.namespace import Namespace
 from flask_restx import Resource
 # from api.stock.api_definition import page_with_stocks, stock
 from api.stock.parser import pagination_parser as pagination
-from database.dtos import Exchange, Index, Sector
+from database.dtos import Exchange, Index, Sector, Country
 import logging
 
 namespace = Namespace('filters', description='')
@@ -34,6 +34,10 @@ class FiltersEndpoint(Resource):
             {
             'name': 'index',
             'options': []
+            },
+            {
+            'name': 'country',
+            'options': []
             }
             ]
 
@@ -56,6 +60,13 @@ class FiltersEndpoint(Resource):
             for index in indices:
                 index_options.append({'value':index.index_id,'name':index.name})
             filter_data[2]['options'] = index_options
+
+            countries = Country.query.all()
+            country_options = []
+            for country in countries:
+                if country.language == 'deu':
+                    country_options.append({'value':country.country_id,'name':country.name})
+            filter_data[3]['options'] = country_options
         return jsonify(filter_data)
 
 
