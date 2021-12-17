@@ -1,6 +1,7 @@
 configs:
     - config:
         profile: "develop"
+        host: "127.0.0.1"
         port: 5000
         debugMode: true
         logPath: "logs/stock_analysis.log"
@@ -19,6 +20,7 @@ configs:
             logFilePath: "logs/stock_analysis.log"
     - config:
         profile: "production"
+        host: "0.0.0.0"
         port: 5000
         debugMode: false
         logPath: "logs/stock_analysis.log"

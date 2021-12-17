@@ -1,5 +1,7 @@
 import logging
 
+flask_host = ''
+flask_port = 0
 flask_debug = False
 flask_threaded = False
 sqlalchemy_database_uri = ''
@@ -9,6 +11,8 @@ log_file_path = ''
 log_level = logging.DEBUG
 
 def set_settings(config):
+    global flask_host
+    global flask_port
     global flask_debug
     global flask_threaded
     global sqlalchemy_database_uri
@@ -17,6 +21,8 @@ def set_settings(config):
     global log_file_path
     global log_level
 
+    flask_host = config['host']
+    flask_port = config['port']
     flask_debug = config['debugMode']
     flask_threaded = config['flaskThreaded']
     sqlalchemy_database_uri = 'mysql://' + config['databases']['stock_analysis']['user'] + ':' + config['databases']['stock_analysis']['password'] + '@' + config['databases']['stock_analysis']['address'] + ':' + str(config['databases']['stock_analysis']['port']) + '/' + config['databases']['stock_analysis']['database']
