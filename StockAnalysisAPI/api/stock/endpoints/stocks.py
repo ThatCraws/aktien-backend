@@ -44,7 +44,6 @@ class StocksEndpoint(Resource):
         if param_sector_id != None:
             query = query.filter(Sector.sector_id == param_sector_id)
 
-        # query = query.order_by(Stock.market_capitalization.desc())
 
         result = query.all()
 

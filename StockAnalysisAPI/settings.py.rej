@@ -1,0 +1,9 @@
+diff a/StockAnalysisAPI/settings.py b/StockAnalysisAPI/settings.py	(rejected hunks)
+@@ -1,5 +1,7 @@
+ import logging
+ 
++flask_host = ''
++flask_port = 0
+ flask_debug = False
+ flask_threaded = False
+ sqlalchemy_database_uri = ''

@@ -1,0 +1,10 @@
+diff a/StockAnalysisAPI/app.py b/StockAnalysisAPI/app.py	(rejected hunks)
+@@ -68,7 +68,7 @@
+ def main():
+     init_app(app)
+     logging.info('backend starting...')
+-    app.run(debug=settings.flask_debug, threaded=settings.flask_threaded)
++    app.run(host=settings.flask_host, port=settings.flask_port, debug=settings.flask_debug, threaded=settings.flask_threaded)
+ 
+ if __name__ == '__main__':
+     main()
