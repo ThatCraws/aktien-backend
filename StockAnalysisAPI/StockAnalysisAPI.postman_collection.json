@@ -242,14 +242,15 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"const body = pm.response.json()[0];\r",
+							"const body = pm.response.json();\r",
+							"var count = Object.keys(body).length;\r",
 							"\r",
 							"pm.test(\"Check structure\",function(){\r",
 							"\r",
 							"    pm.expect(body.name).to.eql(\"Airbus\");\r",
 							"    pm.expect(body.country).to.eql(\"DE\");\r",
 							"    pm.expect(body.sectors[0].name).to.eql(\"Luft- und Raumfahrt\");\r",
-							"    pm.expect(pm.response.json().length).to.equal(3);\r",
+							"    pm.expect(count).to.equal(27);\r",
 							"});\r",
 							""
 						],
@@ -290,14 +291,15 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"const body = pm.response.json()[0];\r",
+							"const body = pm.response.json();\r",
+							"var count = Object.keys(body).length;\r",
 							"\r",
 							"pm.test(\"Check structure\",function(){\r",
 							"\r",
 							"    pm.expect(body.name).to.eql(\"Boeing\");\r",
 							"    pm.expect(body.country).to.eql(\"US\");\r",
 							"    pm.expect(body.sectors[0].name).to.eql(\"Luft- und Raumfahrt\");\r",
-							"    pm.expect(pm.response.json().length).to.equal(3);\r",
+							"    pm.expect(count).to.equal(27);\r",
 							"});\r",
 							""
 						],

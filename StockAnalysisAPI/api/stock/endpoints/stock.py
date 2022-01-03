@@ -34,7 +34,6 @@ class StockEndpoint(Resource):
             return Response("'interval' filter is not valid", status=400)
 
 
-
         query = Stock.query\
             .join(Sector, Stock.sectors)\
             .join(Exchange, Stock.exchanges)\
@@ -46,7 +45,6 @@ class StockEndpoint(Resource):
 
         result = query.all()
         
-        json_list = []
         stock = None
         for i in result:
             stock = i.serialize()
@@ -69,10 +67,9 @@ class StockEndpoint(Resource):
                 indices.append(index.serialize())
 
             stock['indices'] = indices
-            json_list.append(stock)
         
         #if the stock wasn't found
-        if(len(json_list) == 0):
+        if(stock == None):
             logging.warning("stock with id {} doesn't exist".filter(id))
             return Response("stock with id {} doesn't exist".filter(id), status=400)
             
@@ -81,7 +78,7 @@ class StockEndpoint(Resource):
         if stock['country'] != 'US':
             ticker_symbol+='.{}'.format(stock['country'])
         y_stock = yf.Ticker(ticker_symbol)
-        json_list[0]['market_capitalization'] = y_stock.info['marketCap']
+        stock['market_capitalization'] = y_stock.info['marketCap']
 
 
         if param_interval == None:
@@ -111,9 +108,8 @@ class StockEndpoint(Resource):
             'historicalVolatility' : CHelper.calc_historical_volatility(returns),
             'rsi' : CHelper.calc_current_rsi(df['Close'])
         }
-        json_list.append(y_stock_data)
-
+        stock.update(y_stock_data)
+        stock.update(df.to_dict())
         
-        json_list.append(df.to_dict())
 
-        return jsonify(json_list)
+        return jsonify(stock)

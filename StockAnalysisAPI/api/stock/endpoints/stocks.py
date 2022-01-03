@@ -12,20 +12,16 @@ namespace = Namespace('stocks', description='')
 @namespace.route('/')
 class StocksEndpoint(Resource):
 
-    # @api.expect(pagination)
-    # @api.marshal_with(page_with_stocks)
+
     @cross_origin()
     def get(self):
-        # args = pagination.parse_args(request)
-        # page = args.get('page', 1)
-        # items_per_page = args.get('items_per_page', 10)
-        # stocks = Stock.query.paginate(page, items_per_page, error_out=False)
-        # return stocks
 
         param_name = request.args.get('name')
         param_index_id = request.args.get('index')
         param_country = request.args.get('country')
         param_sector_id = request.args.get('sector')
+
+
 
         query = Stock.query\
             .join(Sector, Stock.sectors)\
