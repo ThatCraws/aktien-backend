@@ -5,6 +5,7 @@ from api.myapi import blueprint as stock_api
 from database.db import db
 from werkzeug.middleware.proxy_fix import ProxyFix
 from util.config_file_reader import readConfig
+from waitress import serve
 
 COMMAND_LINE_PARAM_KEY_PROFILE = "profile:"
 DEFAULT_PROFILE = "develop"
@@ -68,7 +69,8 @@ def init_app(app):
 def main():
     init_app(app)
     logging.info('backend starting...')
-    app.run(host=settings.flask_host, port=settings.flask_port, debug=settings.flask_debug, threaded=settings.flask_threaded)
+    # app.run(host=settings.flask_host, port=settings.flask_port, debug=settings.flask_debug, threaded=settings.flask_threaded)
+    serve(app, host=settings.flask_host, port=settings.flask_port)
 
 if __name__ == '__main__':
     main()
