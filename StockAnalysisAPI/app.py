@@ -13,7 +13,7 @@ CONFIGURATION_FILE_PATH = "stock_analysis_config.yaml"
 
 app = Flask(__name__)
 cors = CORS(app)
-app.wsgi_app = ProxyFix(app.wsgi_app)
+# app.wsgi_app = ProxyFix(app.wsgi_app)
 
 def readCommandLineArguments(paramKey):
     args = sys.argv
