@@ -20,3 +20,5 @@ StockAnalysisAPI/api/__pycache__/*
 StockAnalysisAPI/api/stock/__pycache__/*
 StockAnalysisAPI/api/stock/endpoints/__pycache__/*
 StockAnalysisAPI/database/__pycache__/*
+StockAnalysisAPI/logs/*
+StockAnalysisAPI/util/*
