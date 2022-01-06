@@ -109,7 +109,22 @@ class StockEndpoint(Resource):
             'rsi' : CHelper.calc_current_rsi(df['Close'])
         }
         stock.update(y_stock_data)
-        stock.update(df.to_dict())
+
+        new_data = []
+        for i in range(len(df['Date'])):
+            candle = {
+                'x' : df['Date'][i].isoformat(),
+                'o' : df['Open'][i],
+                'h' : df['High'][i],
+                'l' : df['Low'][i],
+                'c' : df['Close'][i]
+            }
+            new_data.append(candle)
         
+        new_graph = {
+            'data' : new_data
+        }
+
+        stock.update(new_graph)
 
         return jsonify(stock)
