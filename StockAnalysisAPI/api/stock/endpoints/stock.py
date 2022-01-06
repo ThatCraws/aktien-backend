@@ -18,6 +18,7 @@ class StockEndpoint(Resource):
 
         param_period = request.args.get('period')
         param_interval = request.args.get('interval')
+        date_key = 'Datetime'
 
         if param_period == None:
             param_period = "1mo"
@@ -32,6 +33,10 @@ class StockEndpoint(Resource):
             or param_interval=="1d" or param_interval=="5d" or param_interval=="1wk" or param_interval=="1mo"))):
             logging.warning("'interval' filter is not valid")
             return Response("'interval' filter is not valid", status=400)
+
+        #Because yFinance changes the key name from Datetime to Date when we are using an interval of >= 1d
+        if param_interval == "1d" or param_interval == "5d" or param_interval == "1wk" or param_interval == "1mo":
+            date_key = "Date"
 
 
         query = Stock.query\
@@ -109,11 +114,11 @@ class StockEndpoint(Resource):
             'rsi' : CHelper.calc_current_rsi(df['Close'])
         }
         stock.update(y_stock_data)
-        
+
         new_data = []
-        for i in range(len(df['Date'])):
+        for i in range(len(df[date_key])):
             candle = {
-                'x' : df['Date'][i].isoformat(),
+                'x' : df[date_key][i].isoformat(),
                 'o' : df['Open'][i],
                 'h' : df['High'][i],
                 'l' : df['Low'][i],

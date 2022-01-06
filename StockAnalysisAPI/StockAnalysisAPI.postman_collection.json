@@ -250,7 +250,7 @@
 							"    pm.expect(body.name).to.eql(\"Airbus\");\r",
 							"    pm.expect(body.country).to.eql(\"DE\");\r",
 							"    pm.expect(body.sectors[0].name).to.eql(\"Luft- und Raumfahrt\");\r",
-							"    pm.expect(count).to.equal(27);\r",
+							"    pm.expect(count).to.equal(20);\r",
 							"});\r",
 							""
 						],
@@ -299,7 +299,7 @@
 							"    pm.expect(body.name).to.eql(\"Boeing\");\r",
 							"    pm.expect(body.country).to.eql(\"US\");\r",
 							"    pm.expect(body.sectors[0].name).to.eql(\"Luft- und Raumfahrt\");\r",
-							"    pm.expect(count).to.equal(27);\r",
+							"    pm.expect(count).to.equal(20);\r",
 							"});\r",
 							""
 						],
