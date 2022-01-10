@@ -1,7 +1,7 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-name: Python application
+name: Aktien-Backend Testing
 
 on:
   push:
@@ -35,6 +35,20 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+    - name: Shutdown mySQL for setup
+      run: sudo service mysql stop 
+      
+    - name: Configure and start mySQL
+      uses: mirromutth/mysql-action@v1.1
+      with:
+        mysql database: 'stock_analysis'
+        mysql user: 'root'
+        
+    - name: Import database dump
+      run: mysql -u root -p stock_analysis < db_dump.sql
+
+
     - name: Run unit tests
       run: |
         python -m unittest StockAnalysisAPI/tests/test_unittest.py
