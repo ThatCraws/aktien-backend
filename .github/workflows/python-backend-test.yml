@@ -44,7 +44,7 @@ jobs:
       with:
         mysql database: 'stock_analysis'
         mysql user: 'root'
-        mysql password: ''
+        mysql password: 'root'
         
     - name: Import database dump
       run: mysql -u root -p stock_analysis < db_dump.sql
