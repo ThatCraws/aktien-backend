@@ -25,7 +25,7 @@ jobs:
     - name: Configure mySQL     
       run:  mysqladmin -u root -proot password ''
     - name: Import database
-      run:  mysql -u root stock_analysis < db_dump.sql
+      run:  mysql -u root < db_dump.sql
 
     - name: Set up Python 3.9
       uses: actions/setup-python@v2
