@@ -33,7 +33,7 @@ configs:
                 port: 3306
                 user: "root"
                 password: ""
-                database: "stock_analysis"
+                database: "craws_stock_analysis"
         logger:
             level: "warning"
             logFilePath: "logs/stock_analysis.log"
