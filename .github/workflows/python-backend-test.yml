@@ -24,7 +24,7 @@ jobs:
       run: |
         sudo service mysql start
         mysql -u root -p "root" ALTER USER 'root'@'localhost' IDENTIFIED BY ''
-        mysql -u root -p "" < db_dump.sql
+        mysql -u root -p "" stock_analysis < db_dump.sql
 
     - name: Set up Python 3.9
       uses: actions/setup-python@v2
