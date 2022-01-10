@@ -43,7 +43,6 @@ jobs:
       uses: mirromutth/mysql-action@v1.1
       with:
         mysql database: 'stock_analysis'
-        mysql user: 'root'
         
     - name: Import database dump
       run: mysql -u root -p stock_analysis < db_dump.sql
