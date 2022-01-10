@@ -23,7 +23,7 @@ jobs:
     - name: Start mySQL
       run: sudo service mysql start
     - name: Configure mySQL     
-      run:  mysql -u root -p "root" ALTER USER 'root'@'localhost' IDENTIFIED BY ''
+      run:  mysqladmin -u root -proot password ''
     - name: Import database
       run:  mysql -u root -p "" stock_analysis < db_dump.sql
 
