@@ -1,0 +1,9 @@
+pymysql
+mysql-connector-python
+PyYAML
+flask-restx
+flask_sqlalchemy
+pymysql
+flask
+flask-cors
+yfinance
