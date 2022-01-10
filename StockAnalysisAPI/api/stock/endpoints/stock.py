@@ -1,9 +1,5 @@
 from flask import request, jsonify, Response
-from flask_restx.namespace import Namespace
-# from api.myapi import api
 from flask_restx import Resource
-# from api.stock.api_definition import page_with_stocks, stock
-from api.stock.parser import pagination_parser as pagination
 from database.dtos import Exchange, Index, Sector, Stock
 import yfinance as yf
 import util.calculation_helper as CHelper
@@ -12,16 +8,18 @@ import logging
 
 class StockEndpoint(Resource):
 
-    # @api.expect(pagination)
-    # @api.marshal_with(page_with_stocks)
     def get(self,id):
 
         param_period = request.args.get('period')
         param_interval = request.args.get('interval')
+
         date_key = 'Datetime'
 
         if param_period == None:
             param_period = "1mo"
+        
+        if param_interval == None:
+            param_interval = "1d"
 
         #Check for validity
         if (not(param_period == "1d" or param_period == "5d" or param_period == "1mo" or param_period == "3mo" or param_period == "6mo" or
@@ -116,13 +114,15 @@ class StockEndpoint(Resource):
         stock.update(y_stock_data)
 
         new_data = []
+
+        #Create a new json-object for each date-key, also trim the decimals to 3
         for i in range(len(df[date_key])):
             candle = {
                 'x' : df[date_key][i].isoformat(),
-                'o' : df['Open'][i],
-                'h' : df['High'][i],
-                'l' : df['Low'][i],
-                'c' : df['Close'][i]
+                'o' : '%.3f'%(df['Open'][i]),
+                'h' : '%.3f'%(df['High'][i]),
+                'l' : '%.3f'%(df['Low'][i]),
+                'c' : '%.3f'%(df['Close'][i])
             }
             new_data.append(candle)
         

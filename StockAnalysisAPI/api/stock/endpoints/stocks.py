@@ -1,10 +1,7 @@
 from flask import request, jsonify
 from flask_cors import cross_origin
 from flask_restx.namespace import Namespace
-# from api.myapi import api
 from flask_restx import Resource
-# from api.stock.api_definition import page_with_stocks, stock
-from api.stock.parser import pagination_parser as pagination
 from database.dtos import Exchange, Index, Sector, Stock
 
 namespace = Namespace('stocks', description='')
@@ -21,7 +18,7 @@ class StocksEndpoint(Resource):
         param_country = request.args.get('country')
         param_sector_id = request.args.get('sector')
 
-
+        #return all stocks which fit to the chosen filters as a json-list
 
         query = Stock.query\
             .join(Sector, Stock.sectors)\

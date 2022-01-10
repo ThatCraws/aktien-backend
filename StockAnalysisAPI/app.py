@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
 import settings, pymysql, sys, os, logging
-from api.myapi import blueprint as stock_api
+from api.stockapi import blueprint as stock_api
 from database.db import db
 from werkzeug.middleware.proxy_fix import ProxyFix
 from util.config_file_reader import readConfig
@@ -13,8 +13,9 @@ CONFIGURATION_FILE_PATH = "stock_analysis_config.yaml"
 
 app = Flask(__name__)
 cors = CORS(app)
-# app.wsgi_app = ProxyFix(app.wsgi_app)
+app.wsgi_app = ProxyFix(app.wsgi_app)
 
+"""Returns all arguments from it's run command"""
 def readCommandLineArguments(paramKey):
     args = sys.argv
     for index, arg in enumerate(args):
@@ -23,6 +24,7 @@ def readCommandLineArguments(paramKey):
 
     return ""
 
+"""sets the profile from the arguments"""
 def getProfileFromArguments():
     profile = readCommandLineArguments(COMMAND_LINE_PARAM_KEY_PROFILE)
 
@@ -31,6 +33,7 @@ def getProfileFromArguments():
     else:
         print("No profile in arguments. Use default profile " + DEFAULT_PROFILE)
         return DEFAULT_PROFILE
+
 
 def loadConfiguration(profile):
     config = readConfig(CONFIGURATION_FILE_PATH, profile)
@@ -41,11 +44,13 @@ def loadConfiguration(profile):
 
     return config
 
+"""setting app parameters"""
 def configure_app(app):
     app.config['CORS_HEADERS'] = 'Access-Control-Allow-Origin'
     app.config['SQLALCHEMY_DATABASE_URI'] = settings.sqlalchemy_database_uri
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = settings.sqlalchemy_track_modifications
     app.config['JSON_SORT_KEYS'] = settings.json_sort_keys
+
 
 def init_app(app):
     profile = getProfileFromArguments()
@@ -66,11 +71,11 @@ def init_app(app):
     app.register_blueprint(stock_api)
     db.init_app(app)
 
+
 def main():
     init_app(app)
     logging.info('backend starting...')
-    # app.run(host=settings.flask_host, port=settings.flask_port, debug=settings.flask_debug, threaded=settings.flask_threaded)
-    serve(app, host=settings.flask_host, port=settings.flask_port)
+    serve(app,host=settings.flask_host,port=settings.flask_port)
 
 if __name__ == '__main__':
     main()

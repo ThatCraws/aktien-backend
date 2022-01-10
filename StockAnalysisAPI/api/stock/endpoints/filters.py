@@ -1,11 +1,7 @@
-from flask import request, jsonify
+from flask import jsonify
 from flask_restx.namespace import Namespace
-# from api.myapi import api
 from flask_restx import Resource
-# from api.stock.api_definition import page_with_stocks, stock
-from api.stock.parser import pagination_parser as pagination
-from database.dtos import Exchange, Index, Sector, Country
-import logging
+from database.dtos import Index, Sector, Country
 
 namespace = Namespace('filters', description='')
 
@@ -15,8 +11,7 @@ filter_data = ''
 @namespace.route('/')
 class FiltersEndpoint(Resource):
 
-    # @api.expect(pagination)
-    # @api.marshal_with(page_with_stocks)
+
     def get(self):
 
         global filter_data
@@ -34,11 +29,7 @@ class FiltersEndpoint(Resource):
             {
             'name': 'country',
             'options': []
-            },
-            # {
-            # 'name': 'exchange',
-            # 'options': []
-            # },
+            }
             ]
 
             #fill the options-lists
@@ -62,11 +53,6 @@ class FiltersEndpoint(Resource):
                     country_options.append({'value':country.country_id,'name':country.name})
             filter_data[2]['options'] = country_options
 
-            # exchanges = Exchange.query.all()
-            # exchange_options = []
-            # for exchange in exchanges:
-            #     exchange_options.append({'value':exchange.exchange_id,'name':exchange.name})
-            # filter_data[3]['options'] = exchange_options
         return jsonify(filter_data)
 
 

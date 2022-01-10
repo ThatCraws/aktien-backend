@@ -14,7 +14,7 @@ def calc_historical_volatility(returns):
         historical_volatility+=pow((returns[i]-average_return),2)
 
     historical_volatility = math.sqrt(historical_volatility*(1/len(returns)))
-    return historical_volatility
+    return '%.3f'%(historical_volatility*100)
 
 """Best with period of 1-4weeks and 1d interval. Learned from https://www.macroption.com/rsi-calculation/"""
 def calc_rsi(closes):
@@ -55,7 +55,8 @@ def calc_rsi(closes):
         rsi.append(100-100/(1+rs[i]))
 
     return rsi
+
 """returns the latest RSI"""
 def calc_current_rsi(closes):
     rsi_list = calc_rsi(closes)
-    return rsi_list[len(rsi_list)-1]
+    return '%.3f'%(rsi_list[len(rsi_list)-1])
