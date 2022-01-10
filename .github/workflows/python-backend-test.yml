@@ -37,7 +37,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
     - name: Configure and start mySQL
-      run: mysql -u root < db_dump.sql
+      run: mysql -u root stock_analysis < db_dump.sql
 
     - name: Run unit tests
       run: |
