@@ -21,10 +21,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Configure and start mySQL
-      run: |
-        sudo service mysql start
-        mysql -u root -p "root" ALTER USER 'root'@'localhost' IDENTIFIED BY ''
-        mysql -u root -p "" stock_analysis < db_dump.sql
+      run: sudo service mysql start
+      run:  mysql -u root -p "root" ALTER USER 'root'@'localhost' IDENTIFIED BY ''
+      run:  mysql -u root -p "" stock_analysis < db_dump.sql
 
     - name: Set up Python 3.9
       uses: actions/setup-python@v2
