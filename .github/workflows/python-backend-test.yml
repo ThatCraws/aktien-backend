@@ -45,9 +45,10 @@ jobs:
     
     - name: Start backend
       run: |
-        python StockAnalysisAPI/app.py profile:production &
+        cd StockAnalysisAPI
+        python app.py profile:production &
         sleep 5s
 
     - name: Run unit tests
       run: |
-        python -m unittest StockAnalysisAPI/tests/test_unittest.py
+        python -m unittest tests/test_unittest.py
