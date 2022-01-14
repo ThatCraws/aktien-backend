@@ -1,5 +1,6 @@
 import math
 import logging
+import numpy
 
 """Returns percentage of historical data from returns list"""
 def calc_historical_volatility(returns):
@@ -60,3 +61,24 @@ def calc_rsi(closes):
 def calc_current_rsi(closes):
     rsi_list = calc_rsi(closes)
     return '%.3f'%(rsi_list[len(rsi_list)-1])
+
+
+"""returns middle Bollinger Bands of the last n days"""
+def calc_gd_n(closes,n=20):
+    result = []
+    if(len(closes)>= n):
+        r = 0
+        for i in range(n):
+            r+=closes[i]
+        for day in range(n):
+            result.append(r/n)
+        #From here we have result[0]-result[19], which are all the same, so easy peasy lemon squeasy
+        #10
+        for i in range(len(closes)-n):
+            x = range(i+1,n+i)
+            r = 0
+            for m in x:
+                r+=closes[m]
+            result.append(r/n)
+    return result
+

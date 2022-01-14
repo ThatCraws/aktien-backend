@@ -98,6 +98,7 @@ class StockEndpoint(Resource):
         for i in range(len(df['Open'])):
             returns.append((df['Close'][i] /df['Open'][i])-1)
 
+        gd_n = CHelper.calc_gd_n(df['Close'],20)
 
         y_stock_data = {
             'price': y_stock.info['currentPrice'],
@@ -109,7 +110,8 @@ class StockEndpoint(Resource):
             'dayLow' : y_stock.info['dayLow'],
             'dayHigh' : y_stock.info['dayHigh'],
             'historicalVolatility' : CHelper.calc_historical_volatility(returns),
-            'rsi' : CHelper.calc_current_rsi(df['Close'])
+            'rsi' : CHelper.calc_current_rsi(df['Close']),
+            'gd' : gd_n
         }
         stock.update(y_stock_data)
 
