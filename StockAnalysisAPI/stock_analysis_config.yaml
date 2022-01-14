@@ -31,8 +31,8 @@ configs:
             stock_analysis:
                 address: "127.0.0.1"
                 port: 3306
-                user: "craws"
-                password: "" # <- Left blank... for now?
+                user: "craws_ro" # Read-only account. Sicher genug(?)
+                password: "PypWxDlcq,mMBEmA4GTy"
                 database: "craws_stock_analysis"
         logger:
             level: "warning"
