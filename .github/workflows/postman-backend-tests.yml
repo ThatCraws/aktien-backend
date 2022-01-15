@@ -34,7 +34,7 @@ jobs:
     - name: Show Database names
       run: mysql -u root -e 'SHOW DATABASES;'
     - name: Test Database 'mysql'   
-      run: mysql -u root -D mysql -e 'SHOW TABLES;'
+      run: mysql -u root -D stock_analysis -e 'SHOW TABLES;'
 
     - name: Set up Python 3.9
       uses: actions/setup-python@v2
