@@ -11,5 +11,4 @@ waitress
 pandas
 Werkzeug
 SQLAlchemy
-requests
 numPy
