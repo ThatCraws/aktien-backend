@@ -24,16 +24,15 @@ jobs:
       run:  mysqladmin -u root -proot password ''
     - name: Import database
       run: |
-        echo $DB_DUMP_FILE > db.sql
-        mysql -u root -e 'CREATE DATABASE stock_analysis'
-        mysql -u root < db.sql
+        echo "$DB_DUMP_FILE" > /home/runner/db.sql
+        mysql -u root < /home/runner/db.sql
       env:
-        DB_DUMP_FILE : ${{secrets.SQL_DB}}
+        DB_DUMP_FILE : ${{ secrets.SQL_DB }}
     - name: Test dump
       run: cat db.sql
     - name: Show Database names
       run: mysql -u root -e 'SHOW DATABASES;'
-    - name: Test Database 'mysql'   
+    - name: Test Database 'stock_analysis'   
       run: mysql -u root -D stock_analysis -e 'SHOW TABLES;'
 
     - name: Set up Python 3.9
