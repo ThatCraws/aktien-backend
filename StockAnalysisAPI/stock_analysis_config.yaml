@@ -32,7 +32,7 @@ configs:
                 address: "127.0.0.1"
                 port: 3306
                 user: "craws_ro" # Read-only account. Sicher genug(?)
-                password: "PypWxDlcq,mMBEmA4GTy"
+                password: "ng46KGYU08TqXXQSs5_S"
                 database: "craws_stock_analysis"
         logger:
             level: "warning"
