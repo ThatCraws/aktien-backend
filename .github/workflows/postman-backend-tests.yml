@@ -24,10 +24,10 @@ jobs:
       run:  mysqladmin -u root -proot password ''
     - name: Import database
       run: |
-        #        echo $DB_DUMP_FILE > db.sql
-        mysql -u root < $DB_DUMP_FILE
+        echo $DB_DUMP_FILE > db.sql
+        mysql -u root < db.sql
       env:
-        DB_DUMP_FILE : ${{ secrets.SQL_DB }}
+        DB_DUMP_FILE : ${{secrets.SQL_DB}}
 
     - name: Set up Python 3.9
       uses: actions/setup-python@v2
