@@ -23,7 +23,7 @@ jobs:
       run:  mysqladmin -u root -proot password ''
     - name: Import database
       run: |
-        echo "${{ secrets.SQL_DB }}" > db.sql
+        echo '"${{ secrets.SQL_DB }}"' > db.sql
         mysql -u root < db.sql
 
     - name: Set up Python 3.9
