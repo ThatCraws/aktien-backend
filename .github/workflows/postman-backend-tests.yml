@@ -37,7 +37,7 @@ jobs:
     - name: Change working directory
       run: cd StockAnalysisAPI
     - name: Start Backend
-      run: python StockAnalysisAPI/app.py profile:develop
+      run: python app.py profile:develop
     - name: Setup node
       uses: actions/setup-node@v1
       with:
