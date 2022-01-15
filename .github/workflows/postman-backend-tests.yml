@@ -40,7 +40,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
-      -name: Install Newman
+    - name: Install Newman
       run: npm install -g newman
     - name: Run Postman Tests
       run: newman run StockAnalysisAPI/StockAnalysisAPI.postman_collection.json
