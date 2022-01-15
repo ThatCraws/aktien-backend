@@ -21,11 +21,11 @@ class CalculationHelperTest(unittest.TestCase):
 
     def test_volatility_1(self):
         c = CHelper.calc_historical_volatility([30,454,20,2,662])
-        self.assertAlmostEqual(c*100,273.06380206830784,2)
+        self.assertAlmostEqual(c/100,273.06380206830784,2)
 
     def test_volatility_2(self):
         c = CHelper.calc_historical_volatility([23.32,23.22,23.42,22.82,22.22])
-        self.assertAlmostEqual(c*100,0.4400,2)
+        self.assertAlmostEqual(c/100,0.4400,2)
 
 
 if __name__ =='__main__':
