@@ -25,6 +25,8 @@ jobs:
       run: |
         echo "${{ secrets.SQL_DB }}" >> db.sql
         mysql -u root < db.sql
+    - name: Test db.sql
+      run: cat db.sql
 
     - name: Set up Python 3.9
       uses: actions/setup-python@v2
