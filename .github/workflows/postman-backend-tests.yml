@@ -37,7 +37,7 @@ jobs:
     - name: Start Backend
       run: |
         cd StockAnalysisAPI
-        python app.py profile:develop
+        python app.py profile:develop &
     - name: Setup node
       uses: actions/setup-node@v1
       with:
