@@ -5,6 +5,7 @@ on:
     branches: 
       - main
       - develop
+      - julien-action-patch
   pull_request:
     branches: 
       - main 
@@ -23,8 +24,10 @@ jobs:
       run:  mysqladmin -u root -proot password ''
     - name: Import database
       run: |
-        echo "${{ secrets.SQL_DB }}" >> db.sql
+        echo "$DB_DUMP_FILE" > db.sql
         mysql -u root < db.sql
+      env:
+        DB_DUMP_FILE : ${{ secrets.SQL_DB }}
 
     - name: Set up Python 3.9
       uses: actions/setup-python@v2
@@ -35,15 +38,18 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
     - name: Start Backend
       run: |
         cd StockAnalysisAPI
         python app.py profile:develop &
+    
     - name: Setup node
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
     - name: Install Newman
       run: npm install -g newman
+    
     - name: Run Postman Tests
       run: newman run StockAnalysisAPI/StockAnalysisAPI.postman_collection.json
