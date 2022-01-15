@@ -3,8 +3,12 @@ mysql-connector-python
 PyYAML
 flask-restx
 flask_sqlalchemy
-pymysql
+PyMySQL
 flask
 flask-cors
 yfinance
 waitress
+pandas
+Werkzeug
+SQLAlchemy
+requests
