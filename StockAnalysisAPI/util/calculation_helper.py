@@ -75,7 +75,7 @@ def calc_gd_n(closes,n=20):
         #From here we have result[0]-result[19], which are all the same, so easy peasy lemon squeasy
         #10
         for i in range(len(closes)-n):
-            x = range(i+1,n+i)
+            x = range(i,n+i)
             r = 0
             for m in x:
                 r+=closes[m]
