@@ -8,7 +8,7 @@ on:
     branches: 
       - main
       - develop
-      - julien-action-unitests
+      - julien-action-unittests
   pull_request:
     branches: 
       - main 
