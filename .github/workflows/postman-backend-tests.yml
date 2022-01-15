@@ -24,7 +24,8 @@ jobs:
       run:  mysqladmin -u root -proot password ''
     - name: Import database
       run: |
-        mysql -u root < echo "$DB_DUMP_FILE"
+        echo "$DB_DUMP_FILE" > db.sql
+        mysql -u root < db.sql
       env:
         DB_DUMP_FILE : ${{ secrets.SQL_DB }}
 
