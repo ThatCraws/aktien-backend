@@ -33,8 +33,6 @@ jobs:
       run: cat db.sql
     - name: Show Database names
       run: mysql -u root -e 'SHOW DATABASES;'
-    - name: Test Database with brilliant name 'Database'
-      run: mysql -u root -D Database -e 'SHOW TABLES;'
     - name: Test Database 'mysql'   
       run: mysql -u root -D mysql -e 'SHOW TABLES;'
 
