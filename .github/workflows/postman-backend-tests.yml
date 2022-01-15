@@ -34,10 +34,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Change working directory
-      run: cd StockAnalysisAPI
     - name: Start Backend
-      run: python app.py profile:develop
+      run: |
+        cd StockAnalysisAPI
+        python app.py profile:develop
     - name: Setup node
       uses: actions/setup-node@v1
       with:
