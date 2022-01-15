@@ -25,8 +25,8 @@ jobs:
     - name: Import database
       run: |
         echo $DB_DUMP_FILE > db.sql
-        #mysql -u root < db.sql
-        mysql -u root -e 'source db.sql'
+        mysql -u root -e 'CREATE DATABASE stock_analysis'
+        mysql -u root < db.sql
       env:
         DB_DUMP_FILE : ${{secrets.SQL_DB}}
     - name: Test dump
