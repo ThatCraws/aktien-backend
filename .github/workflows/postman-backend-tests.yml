@@ -1,20 +1,18 @@
-# This workflow will install Python dependencies, run tests and lint with a single version of Python
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
-
-name: Aktien-Backend Testing
+name: Postman API Tests
 
 on:
   push:
     branches: 
       - main
       - develop
+      - julien-action-postman
   pull_request:
     branches: 
       - main 
       - develop
 
 jobs:
-  Unit-Testing:
+  Postman-Tests:
 
     runs-on: ubuntu-latest
 
@@ -36,14 +34,15 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Lint with flake8
-      run: |
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    
-    - name: Run unit tests
+    - name: Start Backend
       run: |
         cd StockAnalysisAPI
-        python -m unittest tests/test_unittest.py
+        python app.py profile:develop &
+    - name: Setup node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - name: Install Newman
+      run: npm install -g newman
+    - name: Run Postman Tests
+      run: newman run StockAnalysisAPI/StockAnalysisAPI.postman_collection.json
