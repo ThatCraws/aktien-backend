@@ -25,7 +25,7 @@ jobs:
     - name: Import database
       run: |
         echo "${{ secrets.SQL_DB }}" >> db.sql
-        mysql -u root < db.sql
+        #        mysql -u root < db.sql
     - name: Test db.sql
       run: cat db.sql
 
