@@ -100,11 +100,11 @@ def calc_deviation(gd_n,closes):
 def calc_upper(gd_n, deviation):
     result = []
     for i in range(len(gd_n)):
-        result.append(gd_n[i]+deviation[i])
+        result.append(gd_n[i]+deviation[i]*2)
     return result
 
 def calc_lower(gd_n, deviation):
     result = []
     for i in range(len(gd_n)):
-        result.append(gd_n[i]-deviation[i])
+        result.append(gd_n[i]-deviation[i]*2)
     return result
