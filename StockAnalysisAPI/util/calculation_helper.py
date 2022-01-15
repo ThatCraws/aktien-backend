@@ -72,8 +72,6 @@ def calc_gd_n(closes,n=20):
             r+=closes[i]
         for day in range(n):
             result.append(r/n)
-        #From here we have result[0]-result[19], which are all the same, so easy peasy lemon squeasy
-        #10
         for i in range(len(closes)-n):
             x = range(i,n+i)
             r = 0
@@ -82,3 +80,31 @@ def calc_gd_n(closes,n=20):
             result.append(r/n)
     return result
 
+def calc_deviation(gd_n,closes):
+    result = []
+    if(len(closes) == len(gd_n)):
+        r = 0
+        n = 20
+        for i in range(n):
+            r+=math.sqrt(math.pow((gd_n[i]-closes[i]),2))
+        for day in range(n):
+            result.append(r/n)
+        for i in range(len(closes)-n):
+            x = range(i,n+i)
+            r = 0
+            for m in x:
+                r+=math.sqrt(math.pow((gd_n[m]-closes[m]),2))
+            result.append(r/n)
+    return result
+
+def calc_upper(gd_n, deviation):
+    result = []
+    for i in range(len(gd_n)):
+        result.append(gd_n[i]+deviation[i])
+    return result
+
+def calc_lower(gd_n, deviation):
+    result = []
+    for i in range(len(gd_n)):
+        result.append(gd_n[i]-deviation[i])
+    return result
