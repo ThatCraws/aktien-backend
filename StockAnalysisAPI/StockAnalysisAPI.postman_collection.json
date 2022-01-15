@@ -102,7 +102,7 @@
 							"    pm.expect(jsonData[3].name).to.eql(\"BASF\");\r",
 							"    pm.expect(jsonData[5].name).to.eql(\"Beiersdorf AG\");\r",
 							"    pm.expect(jsonData[24].name).to.eql(\"Merck\")\r",
-							"    pm.expect(jsonData.length).to.equal(38);\r",
+							"    pm.expect(jsonData.length).to.equal(40);\r",
 							"\r",
 							"});"
 						],

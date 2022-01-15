@@ -112,8 +112,8 @@ class StockEndpoint(Resource):
             'regularMarketVolume' : y_stock.info['regularMarketVolume'],
             'dayLow' : y_stock.info['dayLow'],
             'dayHigh' : y_stock.info['dayHigh'],
-            'historicalVolatility' : CHelper.calc_historical_volatility(returns),
-            'rsi' : CHelper.calc_current_rsi(df['Close']),
+            'historicalVolatility' : '%.3f'%CHelper.calc_historical_volatility(returns),
+            'rsi' : '%.3f'%CHelper.calc_current_rsi(df['Close']),
             'gd' : gd_n,
             'upper': upper,
             'lower': lower
