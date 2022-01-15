@@ -8,6 +8,7 @@ on:
     branches: 
       - main
       - develop
+      - julien-action-postman
   pull_request:
     branches: 
       - main 
