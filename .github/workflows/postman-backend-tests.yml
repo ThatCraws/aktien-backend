@@ -5,7 +5,6 @@ on:
     branches: 
       - main
       - develop
-      - julien-action-patch
   pull_request:
     branches: 
       - main 
@@ -24,14 +23,9 @@ jobs:
       run:  mysqladmin -u root -proot password ''
     - name: Import database
       run: |
-        #echo "$DB_DUMP_FILE" > /home/runner/db.sql
         mysql -u root < "$DB_DUMP_FILE"
       env:
         DB_DUMP_FILE : ${{ secrets.SQL_DB }}
-    - name: Show Database names
-      run: mysql -u root -e 'SHOW DATABASES;'
-    - name: Test Database 'stock_analysis'   
-      run: mysql -u root -D stock_analysis -e 'SHOW TABLES;'
 
     - name: Set up Python 3.9
       uses: actions/setup-python@v2
