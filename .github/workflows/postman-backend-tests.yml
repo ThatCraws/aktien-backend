@@ -28,6 +28,8 @@ jobs:
         mysql -u root < db.sql
       env:
         DB_DUMP_FILE : ${{secrets.SQL_DB}}
+    - name: Test dump
+      run: cat db.sql
     - name: Test Database
       run: mysql -u root -e 'SHOW DATABASES;'
 
