@@ -29,7 +29,7 @@ jobs:
       env:
         DB_DUMP_FILE : ${{secrets.SQL_DB}}
     - name: Test Database
-      run: mysql -u root 'USE DATABASE stock_analysis; select * FROM stock'
+      run: mysql -u root -D stock_analysis 'select * FROM stock;'
 
     - name: Set up Python 3.9
       uses: actions/setup-python@v2
