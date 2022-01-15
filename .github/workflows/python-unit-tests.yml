@@ -1,7 +1,7 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-name: Aktien-Backend Testing
+name: Unit Tests
 
 on:
   push:
@@ -20,14 +20,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Start mySQL
-      run: sudo service mysql start
-    - name: Configure mySQL     
-      run:  mysqladmin -u root -proot password ''
-    - name: Import database
-      run:  mysql -u root < db_dump.sql
-
-    - name: Set up Python 3.9
+      - name: Set up Python 3.9
       uses: actions/setup-python@v2
       with:
         python-version: '3.9'
