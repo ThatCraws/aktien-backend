@@ -31,8 +31,10 @@ jobs:
         DB_DUMP_FILE : ${{secrets.SQL_DB}}
     - name: Test dump
       run: cat db.sql
-    - name: Test Database
-      run: mysql -u root -e 'SHOW DATABASES;'
+    - name: Test Database with brilliant name 'Database'
+      run: mysql -u root -D Database -e 'SHOW TABLES;'
+    - name: Test Database 'mysql'   
+      run: mysql -u root -D mysql -e 'SHOW TABLES;'
 
     - name: Set up Python 3.9
       uses: actions/setup-python@v2
