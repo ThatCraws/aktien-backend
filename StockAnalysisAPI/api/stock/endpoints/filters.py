@@ -1,7 +1,7 @@
 from flask import jsonify
 from flask_restx.namespace import Namespace
 from flask_restx import Resource
-from database.dtos import Index, Sector, Country
+from database.dtos import Index, Sector, Country, Stock
 
 namespace = Namespace('filters', description='')
 
@@ -46,7 +46,9 @@ class FiltersEndpoint(Resource):
                 index_options.append({'value':index.index_id,'name':index.name})
             filter_data[1]['options'] = index_options
 
-            countries = Country.query.order_by(Country.name.asc()).all()
+            countries = Country.query\
+                        .join(Stock, Country.country_id == Stock.country)\
+                        .order_by(Country.name.asc()).all()
             country_options = []
             for country in countries:
                 if country.language == 'deu':
@@ -54,5 +56,3 @@ class FiltersEndpoint(Resource):
             filter_data[2]['options'] = country_options
 
         return jsonify(filter_data)
-
-
