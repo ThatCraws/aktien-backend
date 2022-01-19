@@ -82,6 +82,9 @@ class StockEndpoint(Resource):
             ticker_symbol+='.{}'.format(stock['country'])
         y_stock = yf.Ticker(ticker_symbol)
         stock['market_capitalization'] = y_stock.info['marketCap']
+        if "trailingPE" in y_stock.info:
+            stock['price_earning_ratio'] = '%.2f'%y_stock.info['trailingPE']
+
 
 
         if param_interval == None:

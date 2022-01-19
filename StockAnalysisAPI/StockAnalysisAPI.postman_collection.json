@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "e7bfa58d-81f4-4369-b82f-18ff685143ae",
+		"_postman_id": "e572e56e-53bd-4828-b0a6-ec002dcffe04",
 		"name": "StockAnalysisAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -250,7 +250,7 @@
 							"    pm.expect(body.name).to.eql(\"Airbus\");\r",
 							"    pm.expect(body.country).to.eql(\"DE\");\r",
 							"    pm.expect(body.sectors[0].name).to.eql(\"Luft- und Raumfahrt\");\r",
-							"    pm.expect(count).to.equal(23);\r",
+							"    pm.expect(count).to.equal(24);\r",
 							"});\r",
 							""
 						],
